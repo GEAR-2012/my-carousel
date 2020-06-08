@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: rgb(34, 33, 30);
+}
+
+body {
+  font-family: Roboto;
+  color: rgb(34, 33, 30);
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px 50px;
+  background-color: rgb(236, 236, 210);
+}
+
+/* carousel */
+#carousel {
+  box-sizing: border-box;
+  margin: 20px 0;
+  padding: 20px;
+  display: grid;
+  gap: 30px;
+  justify-items: center;
+  align-items: center;
+}
+
+.carousel-expanded {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0 !important;
+}
+/* end of carousel */
+
+/* main picture */
+#main-pic {
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.36);
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+#main-pic img {
+  max-width: 100%;
+  height: 600px;
+  visibility: hidden;
+}
+
+.main-pic-img-expanded {
+  height: 90vh !important;
+}
+/* end of main picture */
+
+/* icons */
+i {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 20px rgb(0, 0, 0);
+  cursor: pointer;
+  position: absolute;
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+
+i:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+#left-arrow {
+  top: calc(50% - 35px);
+  left: 0;
+  padding: 30px 30px 30px 10px;
+}
+
+#right-arrow {
+  top: calc(50% - 35px);
+  right: 0;
+  padding: 30px 10px 30px 30px;
+}
+
+#expand,
+#compress {
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+}
+/* end of icons */
+
+/* strip */
+#strip-cont {
+  height: 120px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.strip-cont-expanded {
+  display: none;
+}
+
+#strip {
+  height: 100px;
+  position: absolute;
+  top: 10px;
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.8s ease-in-out;
+}
+
+.thumb {
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.5s ease-in-out;
+  opacity: 0.8;
+  transform: scale(0.95);
+  filter: brightness(80%) sepia(80%);
+  box-shadow: none;
+  z-index: 0;
+}
+
+.active-thumb {
+  opacity: 1;
+  transform: scale(1);
+  filter: brightness(100%) sepia(0%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+/* end of strip */
+
+.hide {
+  display: none;
+}
