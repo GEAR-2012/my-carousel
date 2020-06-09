@@ -46,8 +46,8 @@ getPictsUrls()
 onload = () => {
   leftArrow.addEventListener("click", nextPicture);
   rightArrow.addEventListener("click", nextPicture);
-  expand.addEventListener("click", expandPicture);
-  compress.addEventListener("click", expandPicture);
+  expand.addEventListener("click", fullscreenSwitcher);
+  compress.addEventListener("click", fullscreenSwitcher);
   compress.classList.toggle("hide");
   startTimer();
 };
@@ -73,7 +73,7 @@ function resetTimers() {
   startTimer();
 }
 
-function expandPicture() {
+function fullscreenSwitcher() {
   if (!expandedPic) {
     openFullscreen();
     expandedPic = true;
@@ -82,8 +82,8 @@ function expandPicture() {
     expandedPic = false;
   }
   // full screen mode
-  // expand.classList.toggle("hide");
-  // compress.classList.toggle("hide");
+  expand.classList.toggle("hide");
+  compress.classList.toggle("hide");
   // carousel.classList.toggle("carousel-expanded");
   // stripCont.classList.toggle("strip-cont-expanded");
   // mainPicImg.classList.toggle("main-pic-img-expanded");
@@ -103,7 +103,9 @@ function openFullscreen() {
     /* IE/Edge */
     mainPic.msRequestFullscreen();
   }
-  screen.orientation.lock("landscape-primary");
+  if ("orientation" in screen) {
+    screen.orientation.lock("landscape-primary");
+  }
 }
 
 /* Close fullscreen */
@@ -120,7 +122,9 @@ function closeFullscreen() {
     /* IE/Edge */
     document.msExitFullscreen();
   }
-  screen.orientation.unlock();
+  if ("orientation" in screen) {
+    screen.orientation.unlock();
+  }
 }
 
 function makeStrip() {
