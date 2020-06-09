@@ -20,6 +20,7 @@ let swipeTimer;
 let picArrLen;
 let pictureIndex;
 let stripWidth;
+let expandedPic = false;
 
 async function getPictsUrls() {
   const json = await fetch("images/images.json");
@@ -73,11 +74,53 @@ function resetTimers() {
 }
 
 function expandPicture() {
-  expand.classList.toggle("hide");
-  compress.classList.toggle("hide");
-  carousel.classList.toggle("carousel-expanded");
-  stripCont.classList.toggle("strip-cont-expanded");
-  mainPicImg.classList.toggle("main-pic-img-expanded");
+  if (!expandedPic) {
+    openFullscreen();
+    expandedPic = true;
+  } else {
+    closeFullscreen();
+    expandedPic = false;
+  }
+  // full screen mode
+  // expand.classList.toggle("hide");
+  // compress.classList.toggle("hide");
+  // carousel.classList.toggle("carousel-expanded");
+  // stripCont.classList.toggle("strip-cont-expanded");
+  // mainPicImg.classList.toggle("main-pic-img-expanded");
+}
+
+/* View in fullscreen */
+function openFullscreen() {
+  if (mainPic.requestFullscreen) {
+    mainPic.requestFullscreen();
+  } else if (mainPic.mozRequestFullScreen) {
+    /* Firefox */
+    mainPic.mozRequestFullScreen();
+  } else if (mainPic.webkitRequestFullscreen) {
+    /* Chrome, Safari and Opera */
+    mainPic.webkitRequestFullscreen();
+  } else if (mainPic.msRequestFullscreen) {
+    /* IE/Edge */
+    mainPic.msRequestFullscreen();
+  }
+  screen.orientation.lock("landscape-primary");
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    /* Firefox */
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    /* Chrome, Safari and Opera */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    /* IE/Edge */
+    document.msExitFullscreen();
+  }
+  screen.orientation.unlock();
 }
 
 function makeStrip() {
