@@ -1,15 +1,28 @@
+:root {
+  --thumbSize: 100px;
+  --thumbGap: 10px;
+  --stripContHeight: calc(var(--thumbSize) + 40px);
+}
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
+  scroll-behavior: smooth;
+  user-select: none;
   background-color: rgb(34, 33, 30);
 }
 
 body {
   font-family: Roboto;
   color: rgb(34, 33, 30);
+}
+
+h1 {
+  font-size: 2rem;
 }
 
 .wrapper {
@@ -21,19 +34,20 @@ body {
 
 /* carousel */
 #carousel {
-  box-sizing: border-box;
+  width: 100%;
   margin: 20px 0;
   padding: 20px;
   display: grid;
   gap: 30px;
   justify-items: center;
-  align-items: center;
+  align-content: space-around;
 }
 /* end of carousel */
 
 /* main picture */
-#main-pic {
+#main-pic-cont {
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.36);
   border-radius: 20px;
@@ -41,14 +55,9 @@ body {
   transition: all 0.5s ease-in-out;
 }
 
-#main-pic img {
-  max-width: 100%;
+#main-pic-cont img {
   height: 600px;
   visibility: hidden;
-}
-
-.main-pic-img-expanded {
-  height: 90vh !important;
 }
 /* end of main picture */
 
@@ -91,45 +100,46 @@ i:hover {
 
 /* strip */
 #strip-cont {
-  height: 120px;
+  width: 80%;
+  height: var(--stripContHeight);
   overflow: scroll;
   scroll-behavior: smooth;
   position: relative;
 }
 
-.strip-cont-expanded {
-  display: none;
-}
-
 #strip {
   height: 100px;
+  margin: auto;
+  padding: 0 var(--thumbGap);
   position: absolute;
-  top: 10px;
-  display: flex;
-  justify-content: space-between;
+  top: calc((var(--stripContHeight) - var(--thumbSize)) / 2);
+  display: grid;
+  grid-auto-flow: column;
+  gap: var(--thumbGap);
   transition: all 0.8s ease-in-out;
 }
 
 .thumb {
-  width: 100px;
-  height: 100px;
-  box-sizing: border-box;
-  border-radius: 10px;
+  /* box-sizing: border-box; */
+  width: var(--thumbSize);
+  height: var(--thumbSize);
   background-size: cover;
   background-position: center;
-  transition: all 0.5s ease-in-out;
+  border-radius: calc(var(--thumbSize) / 6);
   opacity: 0.8;
-  transform: scale(0.95);
   filter: brightness(80%) sepia(80%);
   box-shadow: none;
+  transform: scale(1);
   z-index: 0;
+  transition: all 0.5s ease-in-out;
 }
 
 .active-thumb {
   opacity: 1;
-  transform: scale(1);
   filter: brightness(100%) sepia(0%);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 calc(var(--thumbSize) / 10) rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); */
+  transform: scale(1.16);
   z-index: 1;
 }
 /* end of strip */
@@ -138,74 +148,212 @@ i:hover {
   display: none;
 }
 
-@media only screen and (max-width: 1024px) {
+/* TABLET */
+@media only screen and (max-width: 1024px) and (orientation: portrait) {
+  :root {
+    --thumbSize: 70px;
+    --thumbGap: 6px;
+    --stripContHeight: calc(var(--thumbSize) + 30px);
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
   .wrapper {
     width: 100%;
     margin: 0;
-    padding: 20px 20px;
+    padding: 16px;
   }
 
   /* carousel */
   #carousel {
-    margin: 24px 0;
-    padding: 10px;
-    gap: 24px;
+    margin: 16px 0;
+    padding: 16px 0;
+    gap: 20px;
   }
 
-  /* end of carousel */
-
   /* main picture */
-  #main-pic img {
+  #main-pic-cont {
+    box-shadow: 0 0 34px 8px rgba(0, 0, 0, 0.36);
+    border-radius: 16px;
+  }
+
+  #main-pic-cont img {
     height: 400px;
   }
 
-  /* end of main picture */
-
   /* icons */
-  /* end of icons */
+  i {
+    font-size: 28px;
+  }
+
+  #expand,
+  #compress {
+    bottom: -4px;
+    right: -4px;
+    padding: 20px;
+  }
 
   /* strip */
-  /* end of strip */
+  #strip-cont {
+    width: 84%;
+  }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1366px) and (orientation: landscape) {
+  :root {
+    --thumbSize: 70px;
+    --thumbGap: 6px;
+    --stripContHeight: calc(var(--thumbSize) + 30px);
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
   .wrapper {
     width: 100%;
     margin: 0;
-    padding: 10px 10px;
+    padding: 16px;
   }
 
   /* carousel */
   #carousel {
-    margin: 24px 0;
-    padding: 10px 0px;
-    gap: 24px;
+    margin: 16px 0;
+    padding: 10px 0;
+    gap: 18px;
   }
-
-  /* end of carousel */
 
   /* main picture */
-  #main-pic img {
-    height: 240px;
+  #main-pic-cont {
+    box-shadow: 0 0 34px 8px rgba(0, 0, 0, 0.36);
+    border-radius: 16px;
   }
 
-  /* end of main picture */
+  #main-pic-cont img {
+    height: 540px;
+  }
 
   /* icons */
-  /* end of icons */
+  i {
+    font-size: 28px;
+  }
+
+  #expand,
+  #compress {
+    bottom: -4px;
+    right: -4px;
+    padding: 20px;
+  }
 
   /* strip */
-  /* end of strip */
+  #strip-cont {
+    width: 62%;
+  }
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
+/* MOBILE */
+@media only screen and (max-width: 420px) and (orientation: portrait) {
+  :root {
+    --thumbSize: 50px;
+    --thumbGap: 5px;
+    --stripContHeight: calc(var(--thumbSize) + 22px);
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+  }
+
+  /* carousel */
+  #carousel {
+    margin: 14px 0;
+    padding: 14px 0;
+    gap: 16px;
+  }
+
+  /* main picture */
+  #main-pic-cont {
+    box-shadow: 0 0 24px 6px rgba(0, 0, 0, 0.36);
+    border-radius: 10px;
+  }
+
+  #main-pic-cont img {
+    height: 190px;
+  }
+
+  /* icons */
+  i {
+    font-size: 22px;
+  }
+
+  #expand,
+  #compress {
+    bottom: -4px;
+    right: -4px;
+    padding: 16px;
+  }
+
+  /* strip */
+  #strip-cont {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 830px) and (orientation: landscape) {
+  :root {
+    --thumbSize: 50px;
+    --thumbGap: 5px;
+    --stripContHeight: calc(var(--thumbSize) + 22px);
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 6px;
+  }
+
+  /* carousel */
+  #carousel {
+    margin: 14px 0;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  /* main picture */
+  #main-pic-cont {
+    box-shadow: 0 0 24px 6px rgba(0, 0, 0, 0.36);
+    border-radius: 10px;
+  }
+
+  #main-pic-cont img {
+    height: 260px;
+  }
+
+  /* icons */
+  i {
+    font-size: 22px;
+  }
+
+  #expand,
+  #compress {
+    bottom: -4px;
+    right: -4px;
+    padding: 16px;
+  }
+
+  /* strip */
+  #strip-cont {
+    width: 68%;
   }
 }

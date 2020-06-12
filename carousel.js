@@ -1,8 +1,7 @@
 const docBody = document.querySelector("body");
 const carousel = document.querySelector("#carousel");
-const carouselWidth = carousel.offsetWidth;
-const mainPic = document.querySelector("#main-pic");
-const mainPicImg = document.querySelector("#main-pic>img");
+const mainPic = document.querySelector("#main-pic-cont");
+const mainPicImg = document.querySelector("#main-pic-cont>img");
 const leftArrow = document.querySelector("#left-arrow");
 const rightArrow = document.querySelector("#right-arrow");
 const stripCont = document.querySelector("#strip-cont");
@@ -10,17 +9,20 @@ const expand = document.querySelector("#expand");
 const compress = document.querySelector("#compress");
 const strip = document.querySelector("#strip");
 const picUrls = [];
-const thumbSize = 100;
-const thumbGap = 4;
 const idleTime = 10000;
 const swipeTime = 8000;
 let thumbArr;
+let thumbSize;
+let thumbGap;
 let idleTimer;
 let swipeTimer;
 let picArrLen;
 let pictureIndex;
+let stripContWidth = stripCont.offsetWidth;
 let stripWidth;
 let expandedPic = false;
+let rndSeries;
+let counter = 0;
 
 async function getPictsUrls() {
   const json = await fetch("images/images.json");
@@ -33,10 +35,10 @@ async function getPictsUrls() {
 getPictsUrls()
   .then(() => {
     picArrLen = picUrls.length;
-    // width of the thumbnail strip
-    stripWidth = thumbSize * picArrLen + thumbGap * (picArrLen - 1);
+    rndSeries = randomSeries(0, picArrLen - 1);
     makeStrip();
-    pictureIndex = randomIndexNumber();
+    pictureIndex = rndSeries[counter];
+    counter++;
     updatePicture(pictureIndex);
   })
   .catch((err) => {
@@ -58,11 +60,21 @@ docBody.onclick = () => resetTimers();
 
 function startTimer() {
   idleTimer = setTimeout(() => {
-    pictureIndex = randomIndexNumber();
+    pictureIndex = rndSeries[counter];
     updatePicture(pictureIndex);
+    if (counter < picArrLen - 1) {
+      counter++;
+    } else {
+      counter = 0;
+    }
     swipeTimer = setInterval(() => {
-      pictureIndex = randomIndexNumber();
+      pictureIndex = rndSeries[counter];
       updatePicture(pictureIndex);
+      if (counter < picArrLen - 1) {
+        counter++;
+      } else {
+        counter = 0;
+      }
     }, swipeTime);
   }, idleTime);
 }
@@ -84,9 +96,6 @@ function fullscreenSwitcher() {
   // full screen mode
   expand.classList.toggle("hide");
   compress.classList.toggle("hide");
-  // carousel.classList.toggle("carousel-expanded");
-  // stripCont.classList.toggle("strip-cont-expanded");
-  // mainPicImg.classList.toggle("main-pic-img-expanded");
 }
 
 /* View in fullscreen */
@@ -138,33 +147,27 @@ function makeStrip() {
     thumbDiv.addEventListener("click", indexByThumb);
     strip.appendChild(thumbDiv);
   });
+  // get the thumbnail array
   thumbArr = document.querySelectorAll(".thumb");
-
-  // set the width of the thumbnail strip
-  strip.style.width = `${stripWidth}px`;
+  // get the width of the first thumbnail
+  thumbSize = thumbArr[0].offsetWidth;
+  // get the gap size of the thumbnail strip
+  thumbGap = parseFloat(
+    getComputedStyle(strip).getPropertyValue("gap").slice(0, -2),
+    10
+  );
+  // get the width of the thumbnail strip
+  stripWidth = strip.offsetWidth;
 }
 
 function updateStrip() {
-  // set the position of the thumbnail strip
-  let stripContWidth;
-  if (carouselWidth * 0.9 > stripWidth) {
-    stripContWidth = stripWidth;
-  } else {
-    stripContWidth = carouselWidth * 0.9;
-  }
-  stripCont.style.width = `${stripContWidth}px`;
-  let position =
-    pictureIndex * (thumbSize + thumbGap) + thumbSize / 2 - stripContWidth / 2;
-  let toLeft = position < 0;
-  let toRight = position > stripWidth - stripContWidth;
-  position = -position;
-  if (toLeft) {
-    position = 10;
-  } else if (toRight) {
-    position = stripContWidth - stripWidth - 10;
-  }
-  strip.style.left = `${position}px`;
-
+  // scroll the strip
+  let scrollLeft =
+    thumbGap +
+    pictureIndex * (thumbSize + thumbGap) +
+    thumbSize / 2 -
+    stripContWidth / 2;
+  stripCont.scroll(scrollLeft, 0);
   // higligh the actual thumbnail
   thumbArr.forEach((thumb, i) => {
     if (i === pictureIndex) {
@@ -203,6 +206,15 @@ function updatePicture(ind) {
   updateStrip();
 }
 
-function randomIndexNumber() {
-  return Math.floor(Math.random() * picArrLen);
+function randomSeries(first, last) {
+  let arr = [];
+  for (let i = first; i <= last; i++) {
+    arr.push(i);
+  }
+  let newArr = [];
+  let len = arr.length;
+  for (let i = 0; i < len; i++) {
+    newArr.push(arr.splice(Math.floor(Math.random() * arr.length), 1)[0]);
+  }
+  return newArr;
 }
