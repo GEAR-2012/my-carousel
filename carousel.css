@@ -1,359 +1,379 @@
+/*
+====================  TABLE OF CONTENT  ====================
+MOBILE PORTRAIT (no media query)
+MOBILE LANDSCAPE
+SMALL TABLET PORTRAIT (min-width: 768)
+LARGE TABLET PORTRAIT (min-width: 1024)
+SMALL TABLET LANDSCAPE (min-width: 1024)
+DESKTOP/LAPTOP, LARGE TABLET LANDSCAPE (min-width: 1366)
+*/
+
+/* mobile first rules */
 :root {
-  --thumbSize: 100px;
-  --thumbGap: 10px;
-  --stripContHeight: calc(var(--thumbSize) + 40px);
+    --thumbSize: 50px;
+    --thumbGap: 5px;
+    --stripContHeight: calc(var(--thumbSize) + 22px);
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
-  user-select: none;
-  background-color: rgb(34, 33, 30);
+    scroll-behavior: smooth;
+    user-select: none;
+    background-color: rgb(34, 33, 30);
 }
 
 body {
-  font-family: Roboto;
-  color: rgb(34, 33, 30);
+    font-family: Roboto;
+    color: rgb(34, 33, 30);
 }
 
 h1 {
-  font-size: 2rem;
+    font-size: 1.2rem;
 }
 
 .wrapper {
-  width: 90%;
-  margin: 0 auto;
-  padding: 30px 50px;
-  background-color: rgb(236, 236, 210);
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    background-color: rgb(236, 236, 210);
 }
 
 /* carousel */
 #carousel {
-  width: 100%;
-  margin: 20px 0;
-  padding: 20px;
-  display: grid;
-  gap: 30px;
-  justify-items: center;
-  align-content: space-around;
+    width: 100%;
+    margin: 14px 0;
+    padding: 14px 0;
+    display: grid;
+    gap: 16px;
+    justify-items: center;
+    align-content: space-around;
 }
 /* end of carousel */
 
 /* main picture */
 #main-pic-cont {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.36);
-  border-radius: 20px;
-  position: relative;
-  transition: all 0.5s ease-in-out;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 0 24px 6px rgba(0, 0, 0, 0.36);
+    border-radius: 10px;
+    position: relative;
+    transition: all 0.5s ease-in-out;
 }
 
 #main-pic-cont img {
-  height: 600px;
-  visibility: hidden;
+    height: 52vw;
+    visibility: hidden;
 }
 /* end of main picture */
 
 /* icons */
 i {
-  font-size: 30px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  text-shadow: 0 0 20px rgb(0, 0, 0);
-  cursor: pointer;
-  position: absolute;
-  opacity: 0.5;
-  transition: all 0.3s ease-in-out;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 20px rgb(0, 0, 0);
+    cursor: pointer;
+    position: absolute;
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
 }
 
 i:hover {
-  opacity: 0.9;
-  transform: scale(1.1);
+    opacity: 0.9;
+    transform: scale(1.1);
 }
 
 #left-arrow {
-  top: calc(50% - 35px);
-  left: 0;
-  padding: 30px 30px 30px 10px;
+    top: calc(50% - 35px);
+    left: 0;
+    padding: 30px 30px 30px 10px;
 }
 
 #right-arrow {
-  top: calc(50% - 35px);
-  right: 0;
-  padding: 30px 10px 30px 30px;
+    top: calc(50% - 35px);
+    right: 0;
+    padding: 30px 10px 30px 30px;
 }
 
 #expand,
 #compress {
-  bottom: 0;
-  right: 0;
-  padding: 20px;
+    bottom: -4px;
+    right: -4px;
+    padding: 16px;
 }
 /* end of icons */
 
 /* strip */
 #strip-cont {
-  width: 80%;
-  height: var(--stripContHeight);
-  overflow: scroll;
-  scroll-behavior: smooth;
-  position: relative;
+    width: 90%;
+    height: var(--stripContHeight);
+    overflow: scroll;
+    scroll-behavior: smooth;
+    position: relative;
 }
 
 #strip {
-  height: 100px;
-  margin: auto;
-  padding: 0 var(--thumbGap);
-  position: absolute;
-  top: calc((var(--stripContHeight) - var(--thumbSize)) / 2);
-  display: grid;
-  grid-auto-flow: column;
-  gap: var(--thumbGap);
-  transition: all 0.8s ease-in-out;
+    margin: auto;
+    padding: 0 var(--thumbGap);
+    position: absolute;
+    top: calc((var(--stripContHeight) - var(--thumbSize)) / 2);
+    display: grid;
+    grid-auto-flow: column;
+    gap: var(--thumbGap);
+    transition: all 0.8s ease-in-out;
 }
 
 .thumb {
-  /* box-sizing: border-box; */
-  width: var(--thumbSize);
-  height: var(--thumbSize);
-  background-size: cover;
-  background-position: center;
-  border-radius: calc(var(--thumbSize) / 6);
-  opacity: 0.8;
-  filter: brightness(80%) sepia(80%);
-  box-shadow: none;
-  transform: scale(1);
-  z-index: 0;
-  transition: all 0.5s ease-in-out;
+    width: var(--thumbSize);
+    height: var(--thumbSize);
+    background-size: cover;
+    background-position: center;
+    border-radius: calc(var(--thumbSize) / 6);
+    opacity: 0.8;
+    filter: brightness(80%) sepia(80%);
+    box-shadow: none;
+    transform: scale(1);
+    z-index: 0;
+    transition: all 0.5s ease-in-out;
 }
 
 .active-thumb {
-  opacity: 1;
-  filter: brightness(100%) sepia(0%);
-  box-shadow: 0 0 calc(var(--thumbSize) / 10) rgba(0, 0, 0, 0.4);
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); */
-  transform: scale(1.16);
-  z-index: 1;
+    opacity: 1;
+    filter: brightness(100%) sepia(0%);
+    box-shadow: 0 0 calc(var(--thumbSize) / 10) rgba(0, 0, 0, 0.4);
+    transform: scale(1.16);
+    z-index: 1;
 }
 /* end of strip */
 
 .hide {
-  display: none;
+    display: none !important;
 }
 
-/* TABLET */
-@media only screen and (max-width: 1024px) and (orientation: portrait) {
-  :root {
-    --thumbSize: 70px;
-    --thumbGap: 6px;
-    --stripContHeight: calc(var(--thumbSize) + 30px);
-  }
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-  h1 {
-    font-size: 1.6rem;
-  }
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   MOBILE LANDSCAPE   *****************************
+*/
+@media only screen and (orientation: landscape) {
+    .wrapper {
+        padding: 6px;
+    }
 
-  .wrapper {
-    width: 100%;
-    margin: 0;
-    padding: 16px;
-  }
+    /* carousel */
+    #carousel {
+        padding: 10px 0;
+        gap: 10px;
+    }
 
-  /* carousel */
-  #carousel {
-    margin: 16px 0;
-    padding: 16px 0;
-    gap: 20px;
-  }
+    /* main picture */
+    #main-pic-cont img {
+        height: 62vh;
+    }
 
-  /* main picture */
-  #main-pic-cont {
-    box-shadow: 0 0 34px 8px rgba(0, 0, 0, 0.36);
-    border-radius: 16px;
-  }
-
-  #main-pic-cont img {
-    height: 400px;
-  }
-
-  /* icons */
-  i {
-    font-size: 28px;
-  }
-
-  #expand,
-  #compress {
-    bottom: -4px;
-    right: -4px;
-    padding: 20px;
-  }
-
-  /* strip */
-  #strip-cont {
-    width: 84%;
-  }
+    /* strip */
+    #strip-cont {
+        width: 68%;
+    }
 }
 
-@media only screen and (max-width: 1366px) and (orientation: landscape) {
-  :root {
-    --thumbSize: 70px;
-    --thumbGap: 6px;
-    --stripContHeight: calc(var(--thumbSize) + 30px);
-  }
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   SMALL TABLET PORTRAIT   *****************************
+*/
+@media only screen and (min-width: 768px) and (orientation: portrait) {
+    :root {
+        --thumbSize: 70px;
+        --thumbGap: 6px;
+        --stripContHeight: calc(var(--thumbSize) + 30px);
+    }
 
-  h1 {
-    font-size: 1.6rem;
-  }
+    h1 {
+        font-size: 1.6rem;
+    }
 
-  .wrapper {
-    width: 100%;
-    margin: 0;
-    padding: 16px;
-  }
+    .wrapper {
+        padding: 16px;
+    }
 
-  /* carousel */
-  #carousel {
-    margin: 16px 0;
-    padding: 10px 0;
-    gap: 18px;
-  }
+    /* carousel */
+    #carousel {
+        margin: 16px 0;
+        padding: 16px 0;
+        gap: 20px;
+    }
 
-  /* main picture */
-  #main-pic-cont {
-    box-shadow: 0 0 34px 8px rgba(0, 0, 0, 0.36);
-    border-radius: 16px;
-  }
+    /* main picture */
+    #main-pic-cont {
+        box-shadow: 0 0 34px 8px rgba(0, 0, 0, 0.36);
+        border-radius: 16px;
+    }
 
-  #main-pic-cont img {
-    height: 540px;
-  }
+    /* icons */
+    i {
+        font-size: 28px;
+    }
 
-  /* icons */
-  i {
-    font-size: 28px;
-  }
+    #expand,
+    #compress {
+        padding: 20px;
+    }
 
-  #expand,
-  #compress {
-    bottom: -4px;
-    right: -4px;
-    padding: 20px;
-  }
-
-  /* strip */
-  #strip-cont {
-    width: 62%;
-  }
+    /* strip */
+    #strip-cont {
+        width: 84%;
+    }
 }
 
-/* MOBILE */
-@media only screen and (max-width: 420px) and (orientation: portrait) {
-  :root {
-    --thumbSize: 50px;
-    --thumbGap: 5px;
-    --stripContHeight: calc(var(--thumbSize) + 22px);
-  }
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   LARGE TABLET PORTRAIT   *****************************
+*/
+@media only screen and (min-width: 1024px) and (orientation: portrait) {
+    :root {
+        --thumbSize: 84px;
+        --thumbGap: 8px;
+        --stripContHeight: calc(var(--thumbSize) + 40px);
+    }
 
-  h1 {
-    font-size: 1.2rem;
-  }
+    h1 {
+        font-size: 2.2rem;
+    }
 
-  .wrapper {
-    width: 100%;
-    margin: 0;
-    padding: 10px;
-  }
+    .wrapper {
+        padding: 28px;
+    }
 
-  /* carousel */
-  #carousel {
-    margin: 14px 0;
-    padding: 14px 0;
-    gap: 16px;
-  }
+    /* carousel */
+    #carousel {
+        margin: 28px 0;
+        padding: 28px 0;
+        gap: 40px;
+    }
 
-  /* main picture */
-  #main-pic-cont {
-    box-shadow: 0 0 24px 6px rgba(0, 0, 0, 0.36);
-    border-radius: 10px;
-  }
+    /* main picture */
+    #main-pic-cont {
+        box-shadow: 0 0 42px 10px rgba(0, 0, 0, 0.36);
+        border-radius: 24px;
+    }
 
-  #main-pic-cont img {
-    height: 190px;
-  }
+    /* icons */
+    i {
+        font-size: 40px;
+    }
 
-  /* icons */
-  i {
-    font-size: 22px;
-  }
-
-  #expand,
-  #compress {
-    bottom: -4px;
-    right: -4px;
-    padding: 16px;
-  }
-
-  /* strip */
-  #strip-cont {
-    width: 90%;
-  }
+    #expand,
+    #compress {
+        padding: 30px;
+    }
 }
 
-@media only screen and (max-width: 830px) and (orientation: landscape) {
-  :root {
-    --thumbSize: 50px;
-    --thumbGap: 5px;
-    --stripContHeight: calc(var(--thumbSize) + 22px);
-  }
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   SMALL TABLET LANDSCAPE   *****************************
+*/
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+    :root {
+        --thumbSize: 70px;
+        --thumbGap: 6px;
+        --stripContHeight: calc(var(--thumbSize) + 30px);
+    }
 
-  h1 {
-    font-size: 1.2rem;
-  }
+    h1 {
+        font-size: 1.6rem;
+    }
 
-  .wrapper {
-    width: 100%;
-    margin: 0;
-    padding: 6px;
-  }
+    .wrapper {
+        padding: 16px;
+    }
 
-  /* carousel */
-  #carousel {
-    margin: 14px 0;
-    padding: 10px 0;
-    gap: 10px;
-  }
+    /* carousel */
+    #carousel {
+        margin: 16px 0;
+        gap: 18px;
+    }
 
-  /* main picture */
-  #main-pic-cont {
-    box-shadow: 0 0 24px 6px rgba(0, 0, 0, 0.36);
-    border-radius: 10px;
-  }
+    /* main picture */
+    #main-pic-cont {
+        box-shadow: 0 0 34px 8px rgba(0, 0, 0, 0.36);
+        border-radius: 16px;
+    }
 
-  #main-pic-cont img {
-    height: 260px;
-  }
+    #main-pic-cont img {
+        height: 70vh;
+    }
 
-  /* icons */
-  i {
-    font-size: 22px;
-  }
+    /* icons */
+    i {
+        font-size: 28px;
+    }
 
-  #expand,
-  #compress {
-    bottom: -4px;
-    right: -4px;
-    padding: 16px;
-  }
+    #expand,
+    #compress {
+        padding: 24px;
+    }
+}
 
-  /* strip */
-  #strip-cont {
-    width: 68%;
-  }
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   DESKTOP/LAPTOP   *****************************
+*/
+@media only screen and (min-width: 1366px) and (orientation: landscape) {
+    :root {
+        --thumbSize: 100px;
+        --thumbGap: 10px;
+        --stripContHeight: calc(var(--thumbSize) + 40px);
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .wrapper {
+        width: 90%;
+        margin: 0 auto;
+        padding: 30px 50px;
+    }
+
+    /* carousel */
+    #carousel {
+        margin: 20px 0;
+        padding: 20px;
+        gap: 30px;
+    }
+    /* end of carousel */
+
+    /* main picture */
+    #main-pic-cont {
+        box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.36);
+        border-radius: 20px;
+    }
+
+    #main-pic-cont img {
+        height: 60vh;
+    }
+    /* end of main picture */
+
+    /* icons */
+    i {
+        font-size: 34px;
+    }
+
+    #expand,
+    #compress {
+        padding: 30px;
+    }
+    /* end of icons */
+
+    /* strip */
+    #strip-cont {
+        width: 80%;
+    }
 }
