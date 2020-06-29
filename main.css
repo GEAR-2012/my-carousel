@@ -1,0 +1,106 @@
+/*
+====================  TABLE OF CONTENT  ====================
+MOBILE PORTRAIT (no media query)
+MOBILE LANDSCAPE
+SMALL TABLET PORTRAIT (min-width: 768)
+LARGE TABLET PORTRAIT (min-width: 1024)
+SMALL TABLET LANDSCAPE (min-width: 1024)
+DESKTOP/LAPTOP, LARGE TABLET LANDSCAPE (min-width: 1366)
+*/
+
+/* mobile first rules */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    user-select: none;
+    background-color: rgb(34, 33, 30);
+}
+
+body {
+    font-family: Roboto;
+    color: rgb(34, 33, 30);
+}
+
+h1 {
+    font-size: 1.2rem;
+}
+
+.wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    background-color: rgb(236, 236, 210);
+}
+
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   MOBILE LANDSCAPE   *****************************
+*/
+@media only screen and (orientation: landscape) {
+    .wrapper {
+        padding: 6px;
+    }
+}
+
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   SMALL TABLET PORTRAIT   *****************************
+*/
+@media only screen and (min-width: 768px) and (orientation: portrait) {
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .wrapper {
+        padding: 16px;
+    }
+}
+
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   LARGE TABLET PORTRAIT   *****************************
+*/
+@media only screen and (min-width: 1024px) and (orientation: portrait) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .wrapper {
+        padding: 28px;
+    }
+}
+
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   SMALL TABLET LANDSCAPE   *****************************
+*/
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .wrapper {
+        padding: 16px;
+    }
+}
+
+/*
+*****************************   NEW MEDIA QUERY   *****************************
+*****************************   DESKTOP/LAPTOP   *****************************
+*/
+@media only screen and (min-width: 1366px) and (orientation: landscape) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .wrapper {
+        width: 90%;
+        margin: 0 auto;
+        padding: 30px 50px;
+    }
+}

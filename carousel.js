@@ -25,7 +25,7 @@ let rndSeries;
 let counter = 0;
 
 async function getPictsUrls() {
-    const json = await fetch("images/images.json");
+    const json = await fetch("img/images.json");
     const urls = await json.json();
     urls.forEach((item) => {
         picUrls.push(item.url);
@@ -100,6 +100,7 @@ function fullscreenSwitcher() {
 
 /* View in fullscreen */
 function openFullscreen() {
+    mainPic.style.backgroundSize = "contain";
     if (mainPic.requestFullscreen) {
         mainPic.requestFullscreen();
     } else if (mainPic.mozRequestFullScreen) {
@@ -119,6 +120,7 @@ function openFullscreen() {
 
 /* Close fullscreen */
 function closeFullscreen() {
+    mainPic.style.backgroundSize = "cover";
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) {

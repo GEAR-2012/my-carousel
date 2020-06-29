@@ -15,39 +15,9 @@ DESKTOP/LAPTOP, LARGE TABLET LANDSCAPE (min-width: 1366)
     --stripContHeight: calc(var(--thumbSize) + 22px);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    user-select: none;
-    background-color: rgb(34, 33, 30);
-}
-
-body {
-    font-family: Roboto;
-    color: rgb(34, 33, 30);
-}
-
-h1 {
-    font-size: 1.2rem;
-}
-
-.wrapper {
-    width: 100%;
-    margin: 0;
-    padding: 10px;
-    background-color: rgb(236, 236, 210);
-}
-
 /* carousel */
 #carousel {
     width: 100%;
-    margin: 14px 0;
-    padding: 14px 0;
     display: grid;
     gap: 16px;
     justify-items: center;
@@ -73,7 +43,7 @@ h1 {
 /* end of main picture */
 
 /* icons */
-i {
+#carousel i {
     font-size: 22px;
     font-weight: bold;
     color: rgb(255, 255, 255);
@@ -84,7 +54,7 @@ i {
     transition: all 0.3s ease-in-out;
 }
 
-i:hover {
+#carousel i:hover {
     opacity: 0.9;
     transform: scale(1.1);
 }
@@ -156,26 +126,19 @@ i:hover {
     display: none !important;
 }
 
-/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 /*
 *****************************   NEW MEDIA QUERY   *****************************
 *****************************   MOBILE LANDSCAPE   *****************************
 */
 @media only screen and (orientation: landscape) {
-    .wrapper {
-        padding: 6px;
-    }
-
     /* carousel */
     #carousel {
-        padding: 10px 0;
         gap: 10px;
     }
 
     /* main picture */
     #main-pic-cont img {
-        height: 62vh;
+        height: 52vh;
     }
 
     /* strip */
@@ -195,18 +158,8 @@ i:hover {
         --stripContHeight: calc(var(--thumbSize) + 30px);
     }
 
-    h1 {
-        font-size: 1.6rem;
-    }
-
-    .wrapper {
-        padding: 16px;
-    }
-
     /* carousel */
     #carousel {
-        margin: 16px 0;
-        padding: 16px 0;
         gap: 20px;
     }
 
@@ -217,7 +170,7 @@ i:hover {
     }
 
     /* icons */
-    i {
+    #carousel i {
         font-size: 28px;
     }
 
@@ -243,18 +196,8 @@ i:hover {
         --stripContHeight: calc(var(--thumbSize) + 40px);
     }
 
-    h1 {
-        font-size: 2.2rem;
-    }
-
-    .wrapper {
-        padding: 28px;
-    }
-
     /* carousel */
     #carousel {
-        margin: 28px 0;
-        padding: 28px 0;
         gap: 40px;
     }
 
@@ -265,7 +208,7 @@ i:hover {
     }
 
     /* icons */
-    i {
+    #carousel i {
         font-size: 40px;
     }
 
@@ -286,17 +229,8 @@ i:hover {
         --stripContHeight: calc(var(--thumbSize) + 30px);
     }
 
-    h1 {
-        font-size: 1.6rem;
-    }
-
-    .wrapper {
-        padding: 16px;
-    }
-
     /* carousel */
     #carousel {
-        margin: 16px 0;
         gap: 18px;
     }
 
@@ -306,12 +240,8 @@ i:hover {
         border-radius: 16px;
     }
 
-    #main-pic-cont img {
-        height: 70vh;
-    }
-
     /* icons */
-    i {
+    #carousel i {
         font-size: 28px;
     }
 
@@ -332,23 +262,10 @@ i:hover {
         --stripContHeight: calc(var(--thumbSize) + 40px);
     }
 
-    h1 {
-        font-size: 2rem;
-    }
-
-    .wrapper {
-        width: 90%;
-        margin: 0 auto;
-        padding: 30px 50px;
-    }
-
     /* carousel */
     #carousel {
-        margin: 20px 0;
-        padding: 20px;
         gap: 30px;
     }
-    /* end of carousel */
 
     /* main picture */
     #main-pic-cont {
@@ -356,13 +273,8 @@ i:hover {
         border-radius: 20px;
     }
 
-    #main-pic-cont img {
-        height: 60vh;
-    }
-    /* end of main picture */
-
     /* icons */
-    i {
+    #carousel i {
         font-size: 34px;
     }
 
@@ -370,7 +282,6 @@ i:hover {
     #compress {
         padding: 30px;
     }
-    /* end of icons */
 
     /* strip */
     #strip-cont {
